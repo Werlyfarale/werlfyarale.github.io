@@ -10,6 +10,7 @@ $("body").on("keypress", function () {
     if (!started_game) {
         started_game = true;
         nextSequence();
+        
 
     }
 });
@@ -33,9 +34,11 @@ function flash(dot, randomColor) {
 
 $(".btn").off("click").on("click", function () {
     var userChosenColor = this.id;
+ 
     userClickPattern.push(userChosenColor);
     playSound(userChosenColor)
     checker()
+    animatePress(userChosenColor);
 });
 
 
@@ -46,7 +49,7 @@ function playSound(name) {
 }
 
 function animatePress(currentColor) {
-    $(".btn").addClass("pressed");
+    $(`.${currentColor}`).addClass("pressed");
     setTimeout(function () {
         $(".btn").removeClass("pressed");
     }, 100)
