@@ -3,6 +3,37 @@ var buttonColors = ["red", "blue", "green", "yellow"];
 var userClickPattern = [];
 var level = 0
 
+
+
+
+var modal = $("#myModal");
+var span = $(".close");
+
+
+function showModal() {
+    modal.show();
+}
+
+
+span.click(function() {
+    modal.hide();
+});
+
+
+$(window).click(function(event) {
+    if ($(event.target).is(modal)) {
+        modal.hide();
+    }
+});
+
+
+showModal();
+
+
+
+
+
+
 var started_game = false;
 
 $("body").on("keypress", function () {
@@ -10,7 +41,6 @@ $("body").on("keypress", function () {
     if (!started_game) {
         started_game = true;
         nextSequence();
-        
 
     }
 });
@@ -34,7 +64,7 @@ function flash(dot, randomColor) {
 
 $(".btn").off("click").on("click", function () {
     var userChosenColor = this.id;
- 
+
     userClickPattern.push(userChosenColor);
     playSound(userChosenColor)
     checker()
@@ -86,6 +116,11 @@ function checker() {
         setTimeout(nextSequence, 1000);
     }
 }
+
+
+
+
+
 
 
 
